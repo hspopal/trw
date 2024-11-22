@@ -62,3 +62,9 @@ for subj in "${subj_list[@]}"; do
     sh code/preprocessing_TRW-bswift2.sh -s ${subj} -f
 done
 
+
+# Transfer preprocessed data back to lab server
+for subj in "${subj_list[@]}"; do
+    sh code/preprocessing_TRW-bswift2.sh -s ${subj} -t
+done
+

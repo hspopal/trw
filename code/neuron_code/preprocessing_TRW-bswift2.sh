@@ -219,11 +219,10 @@ cd ${proj_dir}
 if $transfer_bswift2server
 then
     BID_ID=sub-${proj_abr}$subID
-
-    ssh ${uname}@bswift2-login.umd.edu "sh /data/software-research/hpopal/TRW/code/data_transfer.sh "$BID_ID" "$proj_dir" $lab_server" 
+    ssh ${uname}@bswift2-login.umd.edu "sh ${bswift_dir}/code/data_transfer.sh "$BID_ID" "$bswift_dir" "$proj_dir" $lab_server" 
 
     # Change permissions to fmriprep files so everyone can edit
-    chgrp -R psyc-dTRW-data ${proj_dir}/derivatives/fmriprep/$BID_ID
-    chmod -R 775 ${proj_dir}/derivatives/fmriprep/$BID_ID
+    #chgrp -R psyc-dTRW-data ${proj_dir}/derivatives/fmriprep/$BID_ID
+    #chmod -R 775 ${proj_dir}/derivatives/fmriprep/$BID_ID
 fi
 
