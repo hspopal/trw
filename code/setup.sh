@@ -68,3 +68,16 @@ for subj in "${subj_list[@]}"; do
     sh code/preprocessing_TRW-bswift2.sh -s ${subj} -t
 done
 
+
+
+# MRIQC
+singularity run --cleanenv \
+    -B /data/neuron/TRW/reprocessed:/base \
+    /software/neuron/Containers/mriqc-23.1.1.sif \
+    /base /base/derivatives/mriqc \
+    participant --participant-label REDTRW001 \
+    -w /data/neuron/TRW/reprocessed/archive/work
+    
+ssh ${uname}@bswift2-login.umd.edu "sbatch --export=uname="$uname",subID="$subID" --job-name=mriqc_"$subID" --mail-user="${uname}"@umd.edu --output="$bswift_dir"/derivatives/log/mriqc_sub-${proj_abr}"$subID".log ${bswift_dir}/code/mriqc_TRW-bswift2.sh"
+
+
